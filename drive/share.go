@@ -26,7 +26,8 @@ func (self *Drive) Share(args ShareArgs) error {
 		Domain:             args.Domain,
 	}
 	
-	call := self.service.Permissions.Create(args.FileId, permission)                                                                                 
+	call := self.service.Permissions.Create(args.FileId, permission)
+	fmt.Fprintf(args.Out, "Granting %s permission to %s\n", args.Role, args.Type)
     	if permission.Role == "owner" {                                                                                                                  
         	call.TransferOwnership(true)                                                                                                                 
     	}                                                                                                                                                
